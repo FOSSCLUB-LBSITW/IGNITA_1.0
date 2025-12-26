@@ -1,0 +1,311 @@
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-image: url('../assets/bg.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: white;
+
+}
+/* Modal wrapper */
+.modal {
+  display: flex;               /* flex for centering */
+  justify-content: center;     /* horizontal center */
+  align-items: center;         /* vertical center */
+  position: fixed;
+  z-index: 9999;               /* above everything */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.7); /* semi-transparent bg */
+}
+
+/* Modal content box */
+.modal-content {
+  background: radial-gradient(circle at top left,
+    black 15%, 
+    #0E3B2E 25%,
+    #088858 40%,
+    black 80%
+  );
+  padding: 30px;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 500px;
+  color: white;
+  text-align: center;
+  box-shadow: 0 0 25px #4DEEA5;
+  position: relative;          /* needed for close button positioning */
+}
+
+/* Close button */
+.modal .close {
+  position: absolute;      /* relative to modal-content */
+  top: 15px;               /* distance from top */
+  right: 20px;             /* distance from right */
+  color: white;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal .close:hover {
+  color: #4DEEA5;
+}
+
+/* Button inside modal */
+.modal .btn-reg {
+  background-color: #000000;
+  color: white;
+  padding: 8px 20px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-top: 15px;
+}
+
+.modal .btn-reg:hover {
+  transform: scale(1.15);
+}
+
+
+
+a{
+    text-decoration: none;
+    color: black;
+}
+.sec1 {
+  margin-top: 20px;
+    height: 100%;
+    width: 90%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.container {
+    text-align: center;
+    color: white;
+    margin-top: 100px;
+}
+#nb {
+    position: fixed;
+    top: 0;
+    left: -20px;                 /* no need for -20px */
+    width: 100%;
+    height: 10%;
+    background-color: black;
+    display: flex;
+    font-size: x-large;
+    justify-content: flex-end;
+    align-items: center;
+    z-index: 1000;
+}
+
+#nb .menu {
+    display: flex;
+    gap: 10px;
+    list-style: none;
+    color: white;
+}
+
+#nb .menu li {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+}
+
+li :hover {
+    /* magnify by a percentage */
+    transform: scale(1.1);
+    transition: transform 0.3s;
+    text-shadow: 0 0 10px #4DEEA5, 0 0 20px #4DEEA5, 0 0 30px #4DEEA5;
+}
+.glow {
+  margin-top: 20px;
+}
+/* glow item */
+.glow :hover {
+    /* magnify by a percentage */
+     transform: scale(1.1);
+    transition: transform 0.3s;
+    text-shadow: 0 0 10px #4DEEA5, 0 0 20px #4DEEA5, 0 0 30px #4DEEA5;
+    color: #4DEEA5;
+    
+}
+ navbar a:hover {
+    text-shadow: 0 0 10px #4DEEA5, 0 0 20px #4DEEA5, 0 0 30px #4DEEA5;
+}
+
+
+/* button item */
+#butt {
+    background-color: #4DEEA5;
+    color: black;
+    height: fit-content;
+    margin-left: 20px;
+    padding: 4px 4px; /* match padding */
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
+#butt:hover {
+    background-color: #3CC28A;
+    color: white;
+}
+.foss-heading {
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 100px;
+    font-weight: bolder;
+    letter-spacing: 3px;
+    text-shadow: 0 0 15px #20ef92;
+}
+.foss-subheading {
+    color: white;
+    font-size: 24px;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px white;
+}
+.tag{
+    font-size: 24px;
+    margin-top: 20px;
+    color: white;
+    text-shadow: 0 0 10px rgb(0, 0, 0);
+    justify-content: center;
+    display: flex;
+    align-items: center;
+}
+/* section background gradient */
+.sec {
+  margin-top: 50px;
+  padding: 60px 0;
+}
+/* Event Card */
+.event-card {
+  height: 300px;
+  width: 300px;
+  margin: auto;
+  background-color: #0E3B2E;
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 0 20px rgba(0,0,0,0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  height: 325px;
+  width: 325px;
+  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+}
+
+/* Poster always shows initially */
+.poster-wrap {
+  height: 100%;
+  width: 100%;
+  transition: opacity 0.4s ease;
+}
+
+.poster-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+/* Event info overlay (hidden at bottom) */
+.event-info {
+  
+  position: absolute;
+  bottom: -100%;      /* hidden fully below the card */
+  left: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  text-align: center;
+  background-color: rgba(14, 59, 46, 0.95);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: bottom 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+
+/* Hover: slide the info up */
+.event-card:hover .event-info {
+  bottom: 0; 
+    opacity: 1;
+    margin: 30px auto;
+}
+
+/* Poster fades away */
+.event-card:hover .poster-wrap {
+  opacity: 0;
+  z-index: -1000;
+}
+
+/* Fade in text & button */
+.event-info h3,
+.event-info p,
+.event-info .btn-reg {
+  opacity: 1;
+  transition: opacity 0.4s ease 0.15s;
+}
+
+.onerow{
+    display: flex;
+}
+
+
+
+button{
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: #ffffff;
+    border: none;
+    cursor: pointer;
+    color: black;
+    font-size: larger;
+}
+
+
+/* On mobile, show on tap */
+@media (max-width: 768px) {
+  .event-card:active .event-info p,
+  .event-card:active .btn-reg {
+    opacity: 1;
+  }
+  navbar{
+    height: 10%;
+  }
+
+}
+
+.one{
+  margin-top: 40px;
+}
+
+li{
+  color: white;
+}
+
+footer{
+  height: 40px;
+  background-color: black;
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;  
+}
+
+#setsp {
+    margin-top: 20px;
+    
+  }
