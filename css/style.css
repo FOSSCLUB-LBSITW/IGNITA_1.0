@@ -102,7 +102,7 @@ a{
     height: 10%;
     background-color: black;
     display: flex;
-    font-size: x-large;
+    font-size: 20px;
     justify-content: flex-end;
     align-items: center;
     z-index: 1000;
@@ -173,7 +173,9 @@ li :hover {
     text-shadow: 0 0 10px white;
 }
 .tag{
-    font-size: 24px;
+    font-size: 20px;
+    font-style: italic;
+    font-family: cursive;
     margin-top: 20px;
     color: white;
     text-shadow: 0 0 10px rgb(0, 0, 0);
@@ -320,7 +322,7 @@ footer{
     border-radius: 50%;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 0 10px #20ef92;
+    box-shadow: 0 0 5px #20ef92;
     margin:auto;
     margin-bottom: 30px;
   }
@@ -345,7 +347,7 @@ footer{
 
 #pre{
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
   text-shadow: 0 0 15px #20ef92;
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
@@ -353,4 +355,42 @@ footer{
 footer{
   width: 100%;
   margin:0;
+}
+
+#faq {
+  color: #ffffff;
+}
+
+#faq details {
+  background: black;
+  border: 1px solid rgba(77, 238, 165, 0.4);
+  border-radius: 14px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  
+  margin: 10px;
+}
+
+#faq details:hover {
+  transform: translateY(-4px);
+}
+
+#faq summary {
+  color: #4DEEA5;
+  font-size: 1.05rem;
+}
+
+#faq p {
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+#faq h2 {
+  color: #4DEEA5;
+  text-shadow: 0 0 12px rgba(77, 238, 165, 0.5);
+}
+
+html, body {
+  min-height: 100%;
+  overflow-x: hidden;
 }

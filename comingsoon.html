@@ -1,0 +1,1392 @@
+<html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explorica 2025</title>
+  <script src="https://cdn.tailwindcss.com"></script><style>undefined</style>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dela+Gothic+One&amp;display=swap" rel="stylesheet">
+
+
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <style>
+    :root {
+      --black: #000000;
+      --dark-purple: #1d052f;
+      --purple: #7b2ccb;
+      --lavender: #bfaeff;
+    }
+
+    html {
+      scroll-padding-top: 100px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Orbitron", sans-serif;
+      margin: 0;
+      overflow-x: hidden;
+      background: radial-gradient(circle at center, #1d052f 0%, #000000 100%);
+      color: #ffffff;
+    }
+
+    .custom-alert {
+      display: none;
+      background: linear-gradient(135deg,
+          var(--black),
+          var(--dark-purple),
+          var(--purple),
+          var(--lavender));
+      color: white;
+      border: 1px solid #fda4af;
+      padding: 15px;
+      margin-top: 15px;
+      border-radius: 8px;
+      font-weight: 500;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-5px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    .universe {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      background: radial-gradient(ellipse at center,
+          #1d052f 0%,
+          #000000 100%);
+      overflow: hidden;
+    }
+
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: universeMotion linear infinite;
+    }
+
+    @keyframes universeMotion {
+      0% {
+        transform: translateY(0) scale(1);
+        opacity: 0.6;
+      }
+
+      100% {
+        transform: translateY(100vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .btn-custom {
+      background-color: var(--purple);
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 500;
+      display: inline-block;
+      margin: 0.5rem 0;
+      transition: background 0.3s ease;
+    }
+
+    .btn-custom:hover {
+      background-color: var(--cyan);
+      color: var(--black);
+    }
+
+    #carousel {
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding-left: 1rem;
+      padding-right: 1rem;
+      gap: 1.5rem;
+      scroll-snap-type: x mandatory;
+    }
+
+    #carousel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .title-wrapper {
+      text-align: center;
+      line-height: 1;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .tagline {
+      font-family: 'Dela Gothic One', sans-serif;
+      font-weight: 400;
+      letter-spacing: 1px;
+      font-size: 1.75rem;
+    }
+
+    .sliced-heading {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 8vw, 6rem);
+      /* responsive font size */
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1;
+      margin: 0;
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+      color: var(--cyan);
+      /* optional: make sure it's visible */
+    }
+
+    .explorica {
+      color: #b78df3;
+      position: relative;
+      display: inline-block;
+      padding-right: 1rem;
+    }
+
+    .explorica::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 50%;
+      width: 100%;
+      background: radial-gradient(circle at center, #1d052f 0%, #000000 100%);
+      transform: skewY(-4deg);
+      transform-origin: top left;
+      z-index: 1;
+    }
+
+    .explorica::before {
+      content: "Explorica";
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+      color: #b78df3;
+    }
+
+    .version {
+      color: var(--cyan);
+      position: relative;
+      z-index: 3;
+    }
+
+    @keyframes modalZoomFade {
+      0% {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    /* Event Card Styling */
+    .event-card {
+      width: 300px;
+      /* fixed width */
+      height: 420px;
+      /* fixed height */
+      background: rgba(26, 26, 48, 0.95);
+      border-radius: 1rem;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      animation: modalZoomFade 0.4s ease-out;
+      box-shadow: 0 0 20px rgba(159, 122, 234, 0.3);
+      border: 1px solid rgba(159, 122, 234, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+      flex-shrink: 0;
+      /* prevent shrinking in flex layouts */
+    }
+
+    .event-card:hover {
+      transform: scale(1.03);
+      box-shadow: 0 0 25px rgba(159, 122, 234, 0.5);
+    }
+
+    .event-image {
+      width: 100%;
+      height: 200px;
+      /* fixed image height */
+      object-fit: cover;
+      /* crops without distortion */
+      border-radius: 0.75rem;
+      margin-bottom: 1rem;
+      box-shadow: 0 0 10px rgba(159, 122, 234, 0.2);
+    }
+
+    .event-card h3 {
+      color: #fff;
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .event-card p {
+      color: #ccc;
+      text-align: center;
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .event-card {
+        width: 250px;
+        height: 380px;
+      }
+
+      .event-image {
+        height: 180px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .event-card {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        /* allow height to adjust naturally on small screens */
+      }
+
+      .event-image {
+        height: 160px;
+      }
+    }
+
+       .main-event-card {
+    width: 350px;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    flex-shrink: 0;
+    padding: 4px; /* space for gradient border */
+    background: linear-gradient(135deg, var(--purple), var(--lavender));
+  }
+
+  .main-event-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+    border-radius: 0.65rem; /* slightly smaller so border is visible */
+  }
+
+
+    /* Carousel Buttons (optional enhancements) */
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background-color: rgba(159, 122, 234, 0.2);
+      color: white;
+      border: none;
+      border-radius: 9999px;
+      width: 2rem;
+      height: 2rem;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .carousel-button:hover {
+      background-color: rgba(159, 122, 234, 0.4);
+    }
+
+    @keyframes modalZoomFade {
+      0% {
+        opacity: 0;
+        transform: scale(0.85);
+      }
+
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .modal-content {
+      animation: modalZoomFade 0.4s ease-out;
+      background-color: #1d052f;
+      /* match your theme */
+      color: #ffffff;
+      border: 2px solid var(--purple);
+      box-shadow: 0 0 20px var(--lavender);
+    }
+
+
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background-color: var(--purple);
+      color: white;
+      padding: 0.5rem 0.75rem;
+      border-radius: 9999px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      transition: background-color 0.3s ease;
+    }
+
+    .carousel-button:hover {
+      background-color: var(--dark-purple);
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes slideUp {
+      from {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes bounceIn {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+
+      60% {
+        transform: scale(1.1);
+        opacity: 1;
+      }
+
+      80% {
+        transform: scale(0.95);
+      }
+
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .animate-fade-in {
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    .animate-slide-up {
+      animation: slideUp 1.5s ease-out;
+    }
+
+    .animate-fade-in-delay {
+      animation: fadeIn 2s ease-in-out 1s both;
+    }
+
+    .animate-bounce-in {
+      animation: bounceIn 1.2s ease-in-out;
+    }
+
+    @keyframes zoomFade {
+      0% {
+        transform: scale(1.05);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .animate-zoom-fade {
+      animation: zoomFade 1.5s ease-out forwards;
+    }
+
+    @keyframes buttonPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--purple);
+      }
+
+      50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px var(--lavender);
+      }
+
+      100% {
+        transform: scale(1);
+        box-shadow: 0 0 10px var(--purple);
+      }
+    }
+
+    @keyframes buttonEntrance {
+      0% {
+        transform: translateY(20px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .btn-animate {
+      animation: buttonEntrance 1.2s ease-out;
+    }
+
+    .btn-custom:hover {
+      animation: buttonPulse 1s infinite;
+    }
+
+    @keyframes fadeSlideUp {
+      0% {
+        transform: translateY(40px);
+        opacity: 0;
+      }
+
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .animate-fade-slide-up {
+      animation: fadeSlideUp 1.5s ease-out;
+    }
+
+
+    @media (max-width: 640px) {
+      .btn-group {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+      }
+    }
+
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .ticket-img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 3 / 1;  /* Wide ticket look */
+  object-fit: contain;  /* Prevents logo cropping */
+  border-radius: 0.9rem;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.5s ease;
+}
+
+.ticket-card:hover {
+  transform: scale(1.08);
+}
+
+/* Ticket Image Styling */
+.ticket-img {
+  width: 100%;         /* full width of container */
+  height: auto;        /* maintain aspect ratio */
+  aspect-ratio: 3 / 1; /* enforce a wide ticket look */
+  object-fit: cover;
+  border-radius: 0.9rem;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.5s ease;
+}
+
+.ticket-card:hover .ticket-img {
+  transform: scale(1.05);
+}
+
+/* Gradient Animation */
+@keyframes borderGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@media (max-width: 768px) {
+  .ticket-img {
+    aspect-ratio: 2.5 / 1;
+  }
+}
+
+/* Phone adjustments */
+@media (max-width: 480px) {
+  .ticket-img {
+    aspect-ratio: 2 / 1;   /* Taller for better visibility */
+    max-width: 90vw;       /* Almost full screen width */
+    object-fit: contain;   /* Keep logo fully visible */
+  }
+}
+
+.closed-badge {
+  background: linear-gradient(135deg, var(--black), var(--dark-purple), var(--purple), var(--lavender));
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+  </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border-width:0}.pointer-events-none{pointer-events:none}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.left-0{left:0px}.right-0{right:0px}.top-1\/2{top:50%}.right-3{right:0.75rem}.top-2{top:0.5rem}.z-10{z-index:10}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.mb-1{margin-bottom:0.25rem}.mb-10{margin-bottom:2.5rem}.mb-20{margin-bottom:5rem}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mt-10{margin-top:2.5rem}.mt-2{margin-top:0.5rem}.mt-3{margin-top:0.75rem}.mt-4{margin-top:1rem}.mt-6{margin-top:1.5rem}.mt-8{margin-top:2rem}.mb-3{margin-bottom:0.75rem}.inline-block{display:inline-block}.flex{display:flex}.hidden{display:none}.h-20{height:5rem}.h-64{height:16rem}.h-8{height:2rem}.h-full{height:100%}.h-screen{height:100vh}.h-12{height:3rem}.h-auto{height:auto}.max-h-\[90vh\]{max-height:90vh}.w-8{width:2rem}.w-full{width:100%}.w-auto{width:auto}.min-w-\[300px\]{min-width:300px}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-xl{max-width:36rem}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.transform{transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes bounce{0%, 100%{transform:translateY(-25%);animation-timing-function:cubic-bezier(0.8,0,1,1)}50%{transform:none;animation-timing-function:cubic-bezier(0,0,0.2,1)}}.animate-bounce{animation:bounce 1s infinite}.cursor-pointer{cursor:pointer}.cursor-not-allowed{cursor:not-allowed}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-center{justify-content:center}.gap-10{gap:2.5rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.scroll-smooth{scroll-behavior:smooth}.whitespace-pre-line{white-space:pre-line}.rounded{border-radius:0.25rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.bg-pink-500{--tw-bg-opacity:1;background-color:rgb(236 72 153 / var(--tw-bg-opacity, 1))}.bg-purple-700{--tw-bg-opacity:1;background-color:rgb(126 34 206 / var(--tw-bg-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-purple-800{--tw-bg-opacity:1;background-color:rgb(107 33 168 / var(--tw-bg-opacity, 1))}.bg-opacity-70{--tw-bg-opacity:0.7}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-\[\#7B2CCB\]{--tw-gradient-from:#7B2CCB var(--tw-gradient-from-position);--tw-gradient-to:rgb(123 44 203 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.from-\[\#BFAEEF\]{--tw-gradient-from:#BFAEEF var(--tw-gradient-from-position);--tw-gradient-to:rgb(191 174 239 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-\[\#7B2CCB\]{--tw-gradient-to:#7B2CCB var(--tw-gradient-to-position)}.to-\[\#BFAEEF\]{--tw-gradient-to:#BFAEEF var(--tw-gradient-to-position)}.bg-clip-text{-webkit-background-clip:text;background-clip:text}.object-cover{object-fit:cover}.p-4{padding:1rem}.p-6{padding:1.5rem}.px-1{padding-left:0.25rem;padding-right:0.25rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-6{padding-left:1.5rem;padding-right:1.5rem}.px-8{padding-left:2rem;padding-right:2rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-20{padding-top:5rem;padding-bottom:5rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-4{padding-top:1rem;padding-bottom:1rem}.py-8{padding-top:2rem;padding-bottom:2rem}.text-center{text-align:center}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.text-2xl{font-size:1.5rem;line-height:2rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.leading-relaxed{line-height:1.625}.text-gray-200{--tw-text-opacity:1;color:rgb(229 231 235 / var(--tw-text-opacity, 1))}.text-transparent{color:transparent}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-purple-400{--tw-text-opacity:1;color:rgb(192 132 252 / var(--tw-text-opacity, 1))}.opacity-50{opacity:0.5}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition{transition-property:color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.duration-500{transition-duration:500ms}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:scale-110:hover{--tw-scale-x:1.1;--tw-scale-y:1.1;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-pink-700:hover{--tw-bg-opacity:1;background-color:rgb(190 24 93 / var(--tw-bg-opacity, 1))}.hover\:bg-purple-900:hover{--tw-bg-opacity:1;background-color:rgb(88 28 135 / var(--tw-bg-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:text-blue-400:hover{--tw-text-opacity:1;color:rgb(96 165 250 / var(--tw-text-opacity, 1))}.hover\:text-pink-400:hover{--tw-text-opacity:1;color:rgb(244 114 182 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:mt-3{margin-top:0.75rem}.sm\:mt-4{margin-top:1rem}.sm\:inline{display:inline}.sm\:flex-row{flex-direction:row}.sm\:space-x-4 > :not([hidden]) ~ :not([hidden]){--tw-space-x-reverse:0;margin-right:calc(1rem * var(--tw-space-x-reverse));margin-left:calc(1rem * calc(1 - var(--tw-space-x-reverse)))}.sm\:text-base{font-size:1rem;line-height:1.5rem}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}.sm\:text-xl{font-size:1.25rem;line-height:1.75rem}}@media (min-width: 768px){.md\:mt-4{margin-top:1rem}.md\:mt-6{margin-top:1.5rem}.md\:px-8{padding-left:2rem;padding-right:2rem}.md\:text-2xl{font-size:1.5rem;line-height:2rem}.md\:text-lg{font-size:1.125rem;line-height:1.75rem}.md\:text-xl{font-size:1.25rem;line-height:1.75rem}}</style><link rel="preconnect" href="https://fonts.googleapis.com" crossorigin="use-credentials"><link rel="preconnect" href="https://fonts.gstatic.com"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish:wght@200;300;400;500;600;700;800;900&amp;display=swa"></head>
+
+<body data-aos-easing="ease" data-aos-duration="1000" data-aos-delay="0">
+  <!-- Universe Background -->
+  <div class="universe" id="universe"><div class="star" style="width: 3.14368px; height: 3.14368px; left: 99.0734vw; top: -79.3625vh; animation-duration: 12.7916s;"></div><div class="star" style="width: 4.28423px; height: 4.28423px; left: 67.9796vw; top: -15.872vh; animation-duration: 17.2987s;"></div><div class="star" style="width: 4.5284px; height: 4.5284px; left: 7.84264vw; top: -76.0309vh; animation-duration: 14.6664s;"></div><div class="star" style="width: 3.17036px; height: 3.17036px; left: 97.8752vw; top: -72.2723vh; animation-duration: 19.8856s;"></div><div class="star" style="width: 4.4334px; height: 4.4334px; left: 37.2253vw; top: -26.0025vh; animation-duration: 12.7775s;"></div><div class="star" style="width: 3.73554px; height: 3.73554px; left: 49.032vw; top: -96.4303vh; animation-duration: 18.1927s;"></div><div class="star" style="width: 5.88083px; height: 5.88083px; left: 59.9037vw; top: -21.2248vh; animation-duration: 10.113s;"></div><div class="star" style="width: 4.79879px; height: 4.79879px; left: 88.7931vw; top: -17.9099vh; animation-duration: 15.851s;"></div><div class="star" style="width: 5.03275px; height: 5.03275px; left: 97.8306vw; top: -59.8405vh; animation-duration: 15.2026s;"></div><div class="star" style="width: 4.15043px; height: 4.15043px; left: 40.3672vw; top: -71.1203vh; animation-duration: 12.5496s;"></div><div class="star" style="width: 3.25615px; height: 3.25615px; left: 73.9949vw; top: -89.7176vh; animation-duration: 11.6314s;"></div><div class="star" style="width: 5.39805px; height: 5.39805px; left: 9.23673vw; top: -65.2935vh; animation-duration: 12.1075s;"></div><div class="star" style="width: 3.64468px; height: 3.64468px; left: 49.5384vw; top: -10.6228vh; animation-duration: 19.396s;"></div><div class="star" style="width: 5.37098px; height: 5.37098px; left: 20.4741vw; top: -48.7773vh; animation-duration: 16.9354s;"></div><div class="star" style="width: 3.19811px; height: 3.19811px; left: 79.9704vw; top: -21.5559vh; animation-duration: 10.5752s;"></div><div class="star" style="width: 3.83973px; height: 3.83973px; left: 89.7035vw; top: -87.791vh; animation-duration: 14.5314s;"></div><div class="star" style="width: 3.60738px; height: 3.60738px; left: 30.9243vw; top: -81.5184vh; animation-duration: 18.4042s;"></div><div class="star" style="width: 3.26081px; height: 3.26081px; left: 90.5147vw; top: -89.7546vh; animation-duration: 15.3065s;"></div><div class="star" style="width: 3.86799px; height: 3.86799px; left: 36.8764vw; top: -65.5335vh; animation-duration: 11.4624s;"></div><div class="star" style="width: 3.94325px; height: 3.94325px; left: 86.9702vw; top: -71.7036vh; animation-duration: 14.4085s;"></div><div class="star" style="width: 3.8193px; height: 3.8193px; left: 99.3276vw; top: -12.9386vh; animation-duration: 14.0207s;"></div><div class="star" style="width: 4.87071px; height: 4.87071px; left: 93.74vw; top: -63.6785vh; animation-duration: 19.2888s;"></div><div class="star" style="width: 4.79846px; height: 4.79846px; left: 59.4619vw; top: -4.63946vh; animation-duration: 16.4303s;"></div><div class="star" style="width: 3.82709px; height: 3.82709px; left: 93.9838vw; top: -15.4664vh; animation-duration: 11.1625s;"></div><div class="star" style="width: 4.50816px; height: 4.50816px; left: 70.0167vw; top: -61.8364vh; animation-duration: 11.8324s;"></div><div class="star" style="width: 4.71665px; height: 4.71665px; left: 14.1319vw; top: -84.6926vh; animation-duration: 17.0448s;"></div><div class="star" style="width: 5.0042px; height: 5.0042px; left: 37.5575vw; top: -77.8187vh; animation-duration: 17.7131s;"></div><div class="star" style="width: 4.83381px; height: 4.83381px; left: 45.7853vw; top: -33.2713vh; animation-duration: 19.6661s;"></div><div class="star" style="width: 4.68077px; height: 4.68077px; left: 96.586vw; top: -14.1775vh; animation-duration: 17.1954s;"></div><div class="star" style="width: 4.78303px; height: 4.78303px; left: 48.2112vw; top: -3.1182vh; animation-duration: 12.8465s;"></div><div class="star" style="width: 4.07732px; height: 4.07732px; left: 57.8896vw; top: -27.9378vh; animation-duration: 14.3344s;"></div><div class="star" style="width: 4.65355px; height: 4.65355px; left: 94.7282vw; top: -67.4899vh; animation-duration: 10.1358s;"></div><div class="star" style="width: 5.27479px; height: 5.27479px; left: 24.537vw; top: -24.3143vh; animation-duration: 18.333s;"></div><div class="star" style="width: 4.35782px; height: 4.35782px; left: 14.0078vw; top: -58.0233vh; animation-duration: 10.0411s;"></div><div class="star" style="width: 3.24581px; height: 3.24581px; left: 33.8492vw; top: -2.22631vh; animation-duration: 16.5951s;"></div><div class="star" style="width: 4.6118px; height: 4.6118px; left: 60.1432vw; top: -31.7259vh; animation-duration: 15.4328s;"></div><div class="star" style="width: 3.68645px; height: 3.68645px; left: 73.5703vw; top: -20.6055vh; animation-duration: 19.3386s;"></div><div class="star" style="width: 3.97758px; height: 3.97758px; left: 44.6174vw; top: -78.9689vh; animation-duration: 10.8572s;"></div><div class="star" style="width: 4.07343px; height: 4.07343px; left: 75.0027vw; top: -90.088vh; animation-duration: 12.9308s;"></div><div class="star" style="width: 5.19289px; height: 5.19289px; left: 1.18303vw; top: -62.5616vh; animation-duration: 11.7572s;"></div><div class="star" style="width: 3.7382px; height: 3.7382px; left: 24.0374vw; top: -30.2558vh; animation-duration: 10.4055s;"></div><div class="star" style="width: 4.35639px; height: 4.35639px; left: 24.7267vw; top: -96.8201vh; animation-duration: 17.7487s;"></div><div class="star" style="width: 4.7333px; height: 4.7333px; left: 13.2446vw; top: -27.7032vh; animation-duration: 16.6128s;"></div><div class="star" style="width: 4.82952px; height: 4.82952px; left: 25.0323vw; top: -33.5949vh; animation-duration: 16.4105s;"></div><div class="star" style="width: 4.81671px; height: 4.81671px; left: 67.1327vw; top: -56.1916vh; animation-duration: 16.8179s;"></div><div class="star" style="width: 3.16019px; height: 3.16019px; left: 87.3566vw; top: -79.1518vh; animation-duration: 17.451s;"></div><div class="star" style="width: 4.01362px; height: 4.01362px; left: 19.139vw; top: -64.3478vh; animation-duration: 12.5342s;"></div><div class="star" style="width: 3.16717px; height: 3.16717px; left: 19.4377vw; top: -82.7613vh; animation-duration: 14.8029s;"></div><div class="star" style="width: 3.71489px; height: 3.71489px; left: 60.2341vw; top: -66.8335vh; animation-duration: 14.7974s;"></div><div class="star" style="width: 4.78896px; height: 4.78896px; left: 52.811vw; top: -71.7174vh; animation-duration: 14.244s;"></div><div class="star" style="width: 5.63342px; height: 5.63342px; left: 0.55216vw; top: -63.8131vh; animation-duration: 12.4403s;"></div><div class="star" style="width: 5.45599px; height: 5.45599px; left: 2.8293vw; top: -98.1237vh; animation-duration: 19.6788s;"></div><div class="star" style="width: 5.99512px; height: 5.99512px; left: 82.4734vw; top: -10.5574vh; animation-duration: 10.803s;"></div><div class="star" style="width: 3.49452px; height: 3.49452px; left: 59.3311vw; top: -8.16983vh; animation-duration: 18.8827s;"></div><div class="star" style="width: 3.27115px; height: 3.27115px; left: 37.4954vw; top: -77.1091vh; animation-duration: 12.8952s;"></div><div class="star" style="width: 5.84342px; height: 5.84342px; left: 98.3947vw; top: -31.8654vh; animation-duration: 12.4009s;"></div><div class="star" style="width: 4.10266px; height: 4.10266px; left: 3.31377vw; top: -15.2382vh; animation-duration: 19.9584s;"></div><div class="star" style="width: 4.09797px; height: 4.09797px; left: 13.0908vw; top: -99.0109vh; animation-duration: 14.1842s;"></div><div class="star" style="width: 3.90555px; height: 3.90555px; left: 87.2482vw; top: -27.892vh; animation-duration: 15.8536s;"></div><div class="star" style="width: 4.5844px; height: 4.5844px; left: 98.6616vw; top: -32.0379vh; animation-duration: 13.284s;"></div><div class="star" style="width: 4.44988px; height: 4.44988px; left: 54.266vw; top: -62.8513vh; animation-duration: 11.9652s;"></div><div class="star" style="width: 5.63198px; height: 5.63198px; left: 53.5277vw; top: -77.6446vh; animation-duration: 12.9134s;"></div><div class="star" style="width: 4.17673px; height: 4.17673px; left: 36.6581vw; top: -55.0462vh; animation-duration: 13.2791s;"></div><div class="star" style="width: 3.64671px; height: 3.64671px; left: 32.616vw; top: -70.5352vh; animation-duration: 13.5785s;"></div><div class="star" style="width: 5.81313px; height: 5.81313px; left: 38.497vw; top: -10.0945vh; animation-duration: 16.649s;"></div><div class="star" style="width: 4.90569px; height: 4.90569px; left: 82.3892vw; top: -68.6518vh; animation-duration: 12.3588s;"></div><div class="star" style="width: 4.2845px; height: 4.2845px; left: 32.3834vw; top: -34.6255vh; animation-duration: 10.1638s;"></div><div class="star" style="width: 3.99886px; height: 3.99886px; left: 59.5117vw; top: -15.22vh; animation-duration: 11.1562s;"></div><div class="star" style="width: 4.26948px; height: 4.26948px; left: 31.5653vw; top: -57.242vh; animation-duration: 14.9259s;"></div><div class="star" style="width: 3.42405px; height: 3.42405px; left: 37.8415vw; top: -60.9635vh; animation-duration: 15.9262s;"></div><div class="star" style="width: 5.06977px; height: 5.06977px; left: 27.4254vw; top: -25.3556vh; animation-duration: 10.4588s;"></div><div class="star" style="width: 5.24481px; height: 5.24481px; left: 64.3795vw; top: -31.3017vh; animation-duration: 14.2938s;"></div><div class="star" style="width: 4.75452px; height: 4.75452px; left: 90.0134vw; top: -18.1127vh; animation-duration: 14.1762s;"></div><div class="star" style="width: 3.63055px; height: 3.63055px; left: 54.4056vw; top: -41.342vh; animation-duration: 10.9253s;"></div><div class="star" style="width: 5.26351px; height: 5.26351px; left: 90.9525vw; top: -76.0694vh; animation-duration: 15.8307s;"></div><div class="star" style="width: 3.71428px; height: 3.71428px; left: 70.3201vw; top: -62.5669vh; animation-duration: 16.3343s;"></div><div class="star" style="width: 3.41204px; height: 3.41204px; left: 83.3212vw; top: -22.4225vh; animation-duration: 15.5614s;"></div><div class="star" style="width: 3.88246px; height: 3.88246px; left: 15.4084vw; top: -92.6107vh; animation-duration: 15.4807s;"></div><div class="star" style="width: 3.5489px; height: 3.5489px; left: 1.74561vw; top: -83.7479vh; animation-duration: 13.1036s;"></div><div class="star" style="width: 3.43386px; height: 3.43386px; left: 37.8707vw; top: -92.786vh; animation-duration: 12.4312s;"></div><div class="star" style="width: 4.1519px; height: 4.1519px; left: 51.2205vw; top: -74.1487vh; animation-duration: 19.0215s;"></div><div class="star" style="width: 4.74168px; height: 4.74168px; left: 89.706vw; top: -6.93412vh; animation-duration: 10.4615s;"></div><div class="star" style="width: 5.80554px; height: 5.80554px; left: 91.0656vw; top: -66.1663vh; animation-duration: 12.3642s;"></div><div class="star" style="width: 3.46436px; height: 3.46436px; left: 83.2637vw; top: -60.9178vh; animation-duration: 15.5317s;"></div><div class="star" style="width: 3.95971px; height: 3.95971px; left: 32.5449vw; top: -31.7325vh; animation-duration: 19.1123s;"></div><div class="star" style="width: 3.03755px; height: 3.03755px; left: 68.2749vw; top: -27.4796vh; animation-duration: 14.3663s;"></div><div class="star" style="width: 4.13191px; height: 4.13191px; left: 33.7779vw; top: -13.5559vh; animation-duration: 19.3825s;"></div><div class="star" style="width: 4.50666px; height: 4.50666px; left: 25.9123vw; top: -16.3187vh; animation-duration: 11.3829s;"></div><div class="star" style="width: 5.51005px; height: 5.51005px; left: 84.5881vw; top: -8.296vh; animation-duration: 14.6742s;"></div><div class="star" style="width: 5.22911px; height: 5.22911px; left: 52.1589vw; top: -49.9656vh; animation-duration: 14.1329s;"></div><div class="star" style="width: 4.5514px; height: 4.5514px; left: 6.46851vw; top: -76.542vh; animation-duration: 17.2313s;"></div><div class="star" style="width: 4.24872px; height: 4.24872px; left: 69.6562vw; top: -76.0201vh; animation-duration: 16.2079s;"></div><div class="star" style="width: 3.15655px; height: 3.15655px; left: 20.1394vw; top: -19.0411vh; animation-duration: 12.2664s;"></div><div class="star" style="width: 5.57306px; height: 5.57306px; left: 89.8647vw; top: -83.1052vh; animation-duration: 19.5642s;"></div><div class="star" style="width: 4.79159px; height: 4.79159px; left: 45.5015vw; top: -14.262vh; animation-duration: 18.7042s;"></div><div class="star" style="width: 3.14097px; height: 3.14097px; left: 97.6371vw; top: -7.67838vh; animation-duration: 10.1764s;"></div><div class="star" style="width: 3.68385px; height: 3.68385px; left: 9.38945vw; top: -43.7538vh; animation-duration: 19.5581s;"></div><div class="star" style="width: 3.72658px; height: 3.72658px; left: 73.411vw; top: -89.5473vh; animation-duration: 11.8317s;"></div><div class="star" style="width: 3.70909px; height: 3.70909px; left: 30.6678vw; top: -80.2515vh; animation-duration: 18.4471s;"></div><div class="star" style="width: 5.81933px; height: 5.81933px; left: 8.15543vw; top: -34.8118vh; animation-duration: 13.1002s;"></div><div class="star" style="width: 3.87484px; height: 3.87484px; left: 97.0471vw; top: -45.7177vh; animation-duration: 10.5181s;"></div><div class="star" style="width: 4.20355px; height: 4.20355px; left: 31.887vw; top: -71.8347vh; animation-duration: 19.2767s;"></div><div class="star" style="width: 5.67746px; height: 5.67746px; left: 79.9329vw; top: -74.9026vh; animation-duration: 17.8226s;"></div><div class="star" style="width: 5.98268px; height: 5.98268px; left: 11.2319vw; top: -96.787vh; animation-duration: 14.3291s;"></div><div class="star" style="width: 3.00278px; height: 3.00278px; left: 13.5226vw; top: -67.6552vh; animation-duration: 19.1086s;"></div><div class="star" style="width: 5.55452px; height: 5.55452px; left: 81.0073vw; top: -41.9234vh; animation-duration: 15.2079s;"></div><div class="star" style="width: 3.15409px; height: 3.15409px; left: 13.138vw; top: -51.4959vh; animation-duration: 11.9733s;"></div><div class="star" style="width: 5.78188px; height: 5.78188px; left: 77.97vw; top: -67.2131vh; animation-duration: 12.9883s;"></div><div class="star" style="width: 3.61355px; height: 3.61355px; left: 30.8055vw; top: -90.3947vh; animation-duration: 13.0414s;"></div><div class="star" style="width: 3.47271px; height: 3.47271px; left: 14.2875vw; top: -75.7375vh; animation-duration: 14.722s;"></div><div class="star" style="width: 4.43143px; height: 4.43143px; left: 19.6888vw; top: -26.1903vh; animation-duration: 15.8243s;"></div><div class="star" style="width: 4.6125px; height: 4.6125px; left: 73.9015vw; top: -43.7337vh; animation-duration: 13.6469s;"></div><div class="star" style="width: 3.17203px; height: 3.17203px; left: 20.8858vw; top: -57.7847vh; animation-duration: 15.8278s;"></div><div class="star" style="width: 4.26785px; height: 4.26785px; left: 43.8626vw; top: -96.2698vh; animation-duration: 15.2368s;"></div><div class="star" style="width: 5.72073px; height: 5.72073px; left: 20.4369vw; top: -34.9786vh; animation-duration: 11.2105s;"></div><div class="star" style="width: 3.36935px; height: 3.36935px; left: 6.10327vw; top: -59.8866vh; animation-duration: 12.9637s;"></div><div class="star" style="width: 4.9319px; height: 4.9319px; left: 37.7307vw; top: -97.6804vh; animation-duration: 15.8316s;"></div><div class="star" style="width: 4.38064px; height: 4.38064px; left: 74.309vw; top: -36.4897vh; animation-duration: 14.6268s;"></div><div class="star" style="width: 4.97885px; height: 4.97885px; left: 15.1296vw; top: -67.0243vh; animation-duration: 14.7829s;"></div><div class="star" style="width: 4.16509px; height: 4.16509px; left: 61.8902vw; top: -86.4109vh; animation-duration: 12.3938s;"></div><div class="star" style="width: 3.40757px; height: 3.40757px; left: 65.9188vw; top: -1.64418vh; animation-duration: 15.8714s;"></div><div class="star" style="width: 5.6192px; height: 5.6192px; left: 59.8325vw; top: -46.9496vh; animation-duration: 12.2621s;"></div><div class="star" style="width: 4.41478px; height: 4.41478px; left: 10.6321vw; top: -72.0084vh; animation-duration: 12.9229s;"></div><div class="star" style="width: 4.21827px; height: 4.21827px; left: 56.6436vw; top: -80.8576vh; animation-duration: 10.4189s;"></div><div class="star" style="width: 3.07174px; height: 3.07174px; left: 80.6513vw; top: -73.012vh; animation-duration: 15.8872s;"></div><div class="star" style="width: 5.34634px; height: 5.34634px; left: 96.4775vw; top: -1.51221vh; animation-duration: 13.7497s;"></div><div class="star" style="width: 3.59113px; height: 3.59113px; left: 17.0615vw; top: -16.0903vh; animation-duration: 17.1965s;"></div><div class="star" style="width: 5.4417px; height: 5.4417px; left: 77.2776vw; top: -50.8401vh; animation-duration: 10.245s;"></div><div class="star" style="width: 4.47399px; height: 4.47399px; left: 3.13424vw; top: -36.3vh; animation-duration: 14.8707s;"></div><div class="star" style="width: 4.30881px; height: 4.30881px; left: 47.3447vw; top: -42.6503vh; animation-duration: 11.9365s;"></div><div class="star" style="width: 4.19671px; height: 4.19671px; left: 43.2389vw; top: -85.1856vh; animation-duration: 18.4873s;"></div><div class="star" style="width: 5.58172px; height: 5.58172px; left: 54.893vw; top: -90.5734vh; animation-duration: 17.4103s;"></div><div class="star" style="width: 5.68758px; height: 5.68758px; left: 48.8346vw; top: -84.373vh; animation-duration: 14.1424s;"></div><div class="star" style="width: 3.76098px; height: 3.76098px; left: 48.4881vw; top: -48.9832vh; animation-duration: 15.7408s;"></div><div class="star" style="width: 5.02866px; height: 5.02866px; left: 32.6724vw; top: -71.3173vh; animation-duration: 15.4506s;"></div><div class="star" style="width: 5.92239px; height: 5.92239px; left: 20.1817vw; top: -75.7181vh; animation-duration: 16.189s;"></div><div class="star" style="width: 4.66001px; height: 4.66001px; left: 84.1098vw; top: -37.3109vh; animation-duration: 13.5966s;"></div><div class="star" style="width: 3.74893px; height: 3.74893px; left: 9.25266vw; top: -2.13632vh; animation-duration: 18.8761s;"></div><div class="star" style="width: 5.34368px; height: 5.34368px; left: 30.5353vw; top: -81.7828vh; animation-duration: 12.7862s;"></div><div class="star" style="width: 3.29924px; height: 3.29924px; left: 55.7108vw; top: -28.7841vh; animation-duration: 13.3271s;"></div><div class="star" style="width: 3.65693px; height: 3.65693px; left: 22.8057vw; top: -56.1106vh; animation-duration: 17.0245s;"></div><div class="star" style="width: 4.99059px; height: 4.99059px; left: 83.3702vw; top: -34.1849vh; animation-duration: 16.0127s;"></div><div class="star" style="width: 4.52663px; height: 4.52663px; left: 94.6471vw; top: -98.8556vh; animation-duration: 16.9975s;"></div><div class="star" style="width: 5.31524px; height: 5.31524px; left: 55.5703vw; top: -36.7704vh; animation-duration: 11.9388s;"></div><div class="star" style="width: 5.33583px; height: 5.33583px; left: 50.4569vw; top: -34.2336vh; animation-duration: 11.2318s;"></div><div class="star" style="width: 5.88324px; height: 5.88324px; left: 1.15058vw; top: -63.4287vh; animation-duration: 12.2563s;"></div><div class="star" style="width: 4.07247px; height: 4.07247px; left: 72.4823vw; top: -72.5441vh; animation-duration: 10.6353s;"></div><div class="star" style="width: 4.61125px; height: 4.61125px; left: 48.2377vw; top: -86.9752vh; animation-duration: 18.2005s;"></div><div class="star" style="width: 3.82019px; height: 3.82019px; left: 93.1287vw; top: -37.1823vh; animation-duration: 14.608s;"></div><div class="star" style="width: 5.80244px; height: 5.80244px; left: 16.749vw; top: -7.41892vh; animation-duration: 12.1737s;"></div></div>
+  <!-- Landing Page -->
+  <section class="flex flex-col justify-center items-center h-screen text-center animate-zoom-fade" id="home"> 
+  <h1 class="sliced-heading">
+    <span class="explorica bg-gradient-to-r from-[#7B2CCB] to-[#BFAEEF] bg-clip-text text-transparent">Explorica</span>
+    <span class="version bg-gradient-to-r from-[#BFAEEF] to-[#7B2CCB] bg-clip-text text-transparent">7.0</span>
+  </h1>
+
+  <!-- Tagline -->
+  <p class="tagline mt-4 text-base sm:text-lg md:text-xl animate-slide-up">
+    "FORGE THE FUTURE."
+  </p>
+
+  <!-- Highlighted Date -->
+  <div class="mt-3 sm:mt-4 md:mt-6 text-lg sm:text-xl md:text-2xl font-bold bg-gradient-to-r from-[#7B2CCB] to-[#BFAEEF] bg-clip-text text-transparent animate-fade-in-delay">
+    September 13–14, 2025
+  </div>
+
+  <!-- Venue -->
+  <div class="mt-2 sm:mt-3 md:mt-4 text-sm sm:text-base md:text-lg font-medium text-gray-200 animate-fade-in-delay">
+    📍 LBS Institute Of Technology for Women, Poojappura, Thiruvananthapuram
+  </div>
+
+  <!-- Call-to-Action Buttons -->
+  <div class="mt-8 btn-group animate-fade-in-delay">
+    <a href="#events" class="btn-custom btn-animate">Explore Events</a>
+    <a href="#register" class="btn-custom btn-animate">Register Now</a>
+  </div>
+
+  <a href="#about" class="mt-10 animate-bounce text-white hover:text-white transition duration-300">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+    </svg>
+    <span class="sr-only">Scroll Down</span>
+  </a>
+</section>
+
+
+  <!-- About Section -->
+  <section class="px-6 md:px-8 py-16 aos-init aos-animate" id="about" data-aos="fade-up">
+    <h2 class="text-3xl mb-6 text-center aos-init aos-animate" data-aos="zoom-in">
+      What is
+      <span class="sliced-heading text-4xl bg-gradient-to-r from-[#7B2CCB] to-[#BFAEEF] bg-clip-text text-transparent">
+        Explorica
+      </span>
+      ?
+    </h2>
+
+    <p class="max-w-3xl mx-auto text-center text-lg aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+      Explorica is not just an event — it's a voyage into the unknown.
+      Designed to inspire and innovate, Explorica brings together visionaries,
+      technologists, and dreamers to explore the realms of science, space, and
+      future tech.
+    </p>
+  </section>
+
+  <!-- Events Section -->
+  <section class="px-6 md:px-8 py-16" id="events">
+
+    <!-- Pre-Events -->
+    <div class="mb-20 aos-init aos-animate" data-aos="fade-up">
+      <h2 class="text-3xl mb-6 text-center aos-init aos-animate" data-aos="zoom-in">Pre-Events</h2>
+
+      <div class="relative">
+        <button id="prevPreEventBtn" class="carousel-button left-0">◀</button>
+
+        <!-- Flex container for the carousel -->
+        <div id="pre-events-carousel" class="flex gap-4 overflow-x-auto px-6 no-scrollbar">
+          <!-- dubduel -->
+          <div class="event-card cursor-pointer aos-init aos-animate" onclick="openModal('plainModal')" data-aos="fade-right">
+            <img src="/images/events/inplain.jpeg" alt="ludo" class="event-image">
+            <h3 class="text-xl font-semibold mt-2 mb-1 text-center">In Plain Text</h3>
+          </div>
+          <!-- dubduel -->
+          <div class="event-card cursor-pointer aos-init aos-animate" onclick="openModal('dubModal')" data-aos="fade-right">
+            <img src="/images/events/dubduel.jpeg" alt="ludo" class="event-image">
+            <h3 class="text-xl font-semibold mt-2 mb-1 text-center">Dub and Drama Duel</h3>
+          </div>
+          <!-- Ludo -->
+          <div class="event-card cursor-pointer aos-init aos-animate" onclick="openModal('ludoModal')" data-aos="fade-right">
+            <img src="/images/events/ludo.jpeg" alt="ludo" class="event-image">
+            <h3 class="text-xl font-semibold mt-2 mb-1 text-center">Ludo</h3>
+          </div>
+          <!-- Subway Surfers -->
+          <div class="event-card cursor-pointer aos-init aos-animate" onclick="openModal('surferModal')" data-aos="fade-right">
+            <img src="/images/events/surfers.jpeg" alt="Lyriclash" class="event-image">
+            <h3 class="text-xl font-semibold mt-2 mb-1 text-center">Subway Surfers</h3>
+          </div>
+
+          <!-- Lyriclash -->
+          <div class="event-card cursor-pointer aos-init aos-animate" onclick="openModal('lyricModal')" data-aos="fade-right">
+            <img src="/images/events/Lyriclash.jpeg" alt="Lyriclash" class="event-image">
+            <h3 class="text-xl font-semibold mt-2 mb-1 text-center">Lyriclash</h3>
+          </div>
+
+          <!-- Frame Flix -->
+          <div class="event-card cursor-pointer aos-init aos-animate" onclick="openModal('frameModal')" data-aos="fade-right">
+            <img src="/images/events/frameflix.jpeg" alt="FrameFlix" class="event-image">
+            <h3 class="text-xl font-semibold mt-2 mb-1 text-center">Frame Flix</h3>
+          </div>
+
+          <!-- Cine cipher card -->
+          <div class="event-card cursor-pointer aos-init aos-animate" onclick="openModal('cineModal')" data-aos="fade-right">
+            <img src="/images/events/cinecipher.jpeg" alt="cinecipher" class="event-image">
+            <h3 class="text-xl font-semibold mt-2 mb-1 text-center">CineCipher</h3>
+          </div>
+
+          <!-- Paper Craft Showdown Card -->
+          <div class="event-card cursor-pointer aos-init aos-animate" onclick="openModal('craftModal')" data-aos="fade-right">
+            <img src="/images/events/papercraft.jpeg" alt="Paper Craft Showdown" class="event-image">
+            <h3 class="text-xl font-semibold mt-2 mb-1 text-center">Paper Craft Showdown</h3>
+          </div>
+
+          <!-- Product Pitching Card -->
+          <div class="event-card cursor-pointer aos-init aos-animate" onclick="openModal('pitchModal')" data-aos="fade-right">
+            <img src="/images/events/product_pitching.jpeg" alt="Product Pitching" class="event-image">
+            <h3 class="text-xl font-semibold mt-2 mb-1 text-center">Product Pitching Competition</h3>
+          </div>
+        </div>
+
+        <button id="nextPreEventBtn" class="carousel-button right-0">▶</button>
+      </div>
+    </div>
+
+
+    <!-- Main Events -->
+<div class="mb-20 aos-init aos-animate" data-aos="fade-up">
+  <h2 class="text-3xl mb-6 text-center aos-init aos-animate" data-aos="zoom-in">Main Events</h2>
+
+  <div class="relative">
+    <button id="prevMainEventBtn" class="carousel-button left-0">◀</button>
+
+    <!-- Flex container for the carousel -->
+    <div id="main-events-carousel" class="flex gap-4 overflow-x-auto px-6 no-scrollbar">
+      
+      <!-- Main Event Card (Poster Only) -->
+      <div class="main-event-card cursor-pointer aos-init aos-animate" data-aos="fade-right">
+        <img src="/images/events/photospark.jpeg" alt="Main Event Poster" class="main-event-image">
+      </div>
+      <div class="main-event-card cursor-pointer aos-init aos-animate" data-aos="fade-right">
+        <img src="/images/events/devsprint.jpeg" alt="Dev Sprint" class="main-event-image">
+      </div>
+      <div class="main-event-card cursor-pointer aos-init aos-animate" data-aos="fade-right">
+        <img src="/images/events/mystery-deck.jpeg" alt="Dev Sprint" class="main-event-image">
+      </div>
+      <div class="main-event-card cursor-pointer aos-init aos-animate" data-aos="fade-right">
+        <img src="/images/events/levelup.jpeg" alt="Level Up" class="main-event-image">
+      </div>
+      <div class="main-event-card cursor-pointer aos-init aos-animate" data-aos="fade-right">
+        <img src="/images/events/solarsync.jpeg" alt="Solar Sync" class="main-event-image">
+      </div>
+      <div class="main-event-card cursor-pointer aos-init aos-animate" data-aos="fade-right">
+        <img src="/images/events/blockchain.jpeg" alt="block" class="main-event-image">
+      </div>
+       <div class="main-event-card cursor-pointer aos-init aos-animate" data-aos="fade-right">
+        <img src="/images/events/pitchfest.jpeg" alt="block" class="main-event-image">
+      </div>
+    </div>
+
+    <button id="nextMainEventBtn" class="carousel-button right-0">▶</button>
+  </div>
+</div>
+
+
+  </section>
+
+
+<!-- Registration Section -->
+<!-- Registration Section -->
+<section class="px-6 md:px-8 py-16 aos-init aos-animate" id="register" data-aos="fade-up">
+  <h2 class="text-3xl mb-6 text-center aos-init aos-animate" data-aos="zoom-in">
+    Join US
+  </h2>
+  <p class="text-center mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+    Fuel your curiosity. Secure your boarding pass.
+  </p>
+
+  <!-- Ticket Images -->
+  <div class="mt-10 flex justify-center gap-10 flex-wrap">
+
+    <!-- Early Bird IEEE - Closed -->
+    <div class="ticket-card relative">
+      <img src="images/ticket/earlybird-ieee.jpeg" alt="Ticket 1" class="ticket-img opacity-50">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <span class="closed-badge">CLOSED</span>
+      </div>
+    </div>
+
+    <!-- Early Bird Non-IEEE - Closed -->
+    <div class="ticket-card relative">
+      <img src="images/ticket/earlybird-non.jpeg" alt="Ticket 2" class="ticket-img opacity-50">
+      <div class="absolute inset-0 flex items-center justify-center">
+        <span class="closed-badge">CLOSED</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Admit One Tickets (Available) -->
+  <div class="mt-10 flex justify-center gap-10 flex-wrap">
+    <div class="ticket-card">
+      <img src="images/ticket/admit-one-ieee.jpeg" alt="Ticket 3" class="ticket-img">
+    </div>
+    <div class="ticket-card">
+      <img src="images/ticket/admit-one-non.jpeg" alt="Ticket 4" class="ticket-img">
+    </div>
+  </div>
+
+  <!-- Buy Ticket Button -->
+  <div class="text-center mt-10 aos-init aos-animate" data-aos="zoom-in-up" data-aos-delay="400">
+    <a href="https://www.yepdesk.com/explorica-7-0" target="_blank" class="bg-pink-500 hover:bg-pink-700 px-8 py-4 rounded-xl text-white font-semibold shadow-lg transition duration-300 transform hover:scale-105">
+      Buy Tickets
+    </a>
+  </div>
+</section>
+
+
+
+  <!-- Sponsors Section -->
+  <section class="px-6 md:px-8 py-20  text-white animate-fade-in" id="sponsors">
+    <h2 class="text-3xl mb-10 text-center animate-zoom-in">Our Sponsors</h2>
+
+    <div class="flex flex-wrap justify-center items-center gap-10 animate-fade-in-delay">
+      <img src="images/sponsors/Highbec.jpeg" alt="Sponsor 1" class="h-20 w-25 rounded-full object-cover hover:scale-110 transition-transform duration-300 shadow-lg">
+
+      <!-- <img src="images/sponsors/sponsor1.webp" alt="Sponsor 2"
+        class="h-24 w-24 rounded-full object-cover hover:scale-110 transition-transform duration-300 shadow-lg" />
+    </div> -->
+  </div></section>
+
+
+
+  <!-- Sponsor Us Section -->
+  <section class="px-6 md:px-8 py-16 aos-init aos-animate" id="sponsor-us" data-aos="fade-up">
+    <h2 class="text-3xl mb-6 text-center aos-init aos-animate" data-aos="zoom-in">
+      Sponsor This Journey
+    </h2>
+
+    <p class="max-w-2xl mx-auto text-center mb-4 aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+      Partner with us to accelerate next-gen innovation and technological breakthroughs.
+    </p>
+
+    <div class="text-center aos-init aos-animate" data-aos="zoom-in-up" data-aos-delay="400">
+      <a href="mailto:ieeesblbsitw25@gmail.com" class="bg-purple-700 hover:bg-purple-900 px-6 py-3 rounded font-semibold transition duration-300">
+        Become a Sponsor
+      </a>
+    </div>
+  </section>
+
+  <!-- Explorica 6.0 Glimpses Section -->
+  <section class="px-6 md:px-8 py-16 aos-init aos-animate" id="glimpses" data-aos="fade-up">
+    <h2 class="text-3xl mb-6 text-center aos-init aos-animate" data-aos="zoom-in">
+      Explorica 6.0 Glimpses
+    </h2>
+
+    <div class="relative">
+      <!-- Prev Button -->
+      <button id="prevGlimpseBtn" class="absolute left-0 top-1/2 -translate-y-1/2 bg-purple-700 text-white px-3 py-2 rounded-full shadow-lg hover:bg-purple-900 z-10">
+        ◀
+      </button>
+
+      <!-- Carousel Container -->
+      <div id="glimpses-carousel" class="flex gap-6 overflow-x-auto scroll-smooth no-scrollbar py-4 px-1">
+        <div class="min-w-[300px] h-64 overflow-hidden rounded-lg shadow-lg">
+          <img src="images/glimpses/glimpse-1.jpeg" alt="Glimpse 1" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+        </div>
+        <div class="min-w-[300px] h-64 overflow-hidden rounded-lg shadow-lg">
+          <img src="images/glimpses/glimpse-2.jpeg" alt="Glimpse 2" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+        </div>
+        <div class="min-w-[300px] h-64 overflow-hidden rounded-lg shadow-lg">
+          <img src="images/glimpses/glimpse-3.jpeg" alt="Glimpse 3" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+        </div>
+        <div class="min-w-[300px] h-64 overflow-hidden rounded-lg shadow-lg">
+          <img src="images/glimpses/glimpse-4.jpeg" alt="Glimpse 4" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+        </div>
+        <div class="min-w-[300px] h-64 overflow-hidden rounded-lg shadow-lg">
+          <img src="images/glimpses/glimpse-5.jpeg" alt="Glimpse 5" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+        </div>
+        <div class="min-w-[300px] h-64 overflow-hidden rounded-lg shadow-lg">
+          <img src="images/glimpses/glimpse-6.jpeg" alt="Glimpse 6" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+        </div>
+        <div class="min-w-[300px] h-64 overflow-hidden rounded-lg shadow-lg">
+          <img src="images/glimpses/glimpse-7.jpeg" alt="Glimpse 7" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+        </div>
+        <div class="min-w-[300px] h-64 overflow-hidden rounded-lg shadow-lg">
+          <img src="images/glimpses/glimpse-8.jpeg" alt="Glimpse 8" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+        </div>
+        <div class="min-w-[300px] h-64 overflow-hidden rounded-lg shadow-lg">
+          <img src="images/glimpses/glimpse-9.jpeg" alt="Glimpse 9" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+        </div>
+        <div class="min-w-[300px] h-64 overflow-hidden rounded-lg shadow-lg">
+          <img src="images/glimpses/glimpse-10.jpeg" alt="Glimpse 10" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500">
+        </div>
+      </div>
+
+      <!-- Next Button -->
+      <button id="nextGlimpseBtn" class="absolute right-0 top-1/2 -translate-y-1/2 bg-purple-700 text-white px-3 py-2 rounded-full shadow-lg hover:bg-purple-900 z-10">
+        ▶
+      </button>
+    </div>
+  </section>
+
+  <!-- Venue Section -->
+  <section class="px-6 md:px-8 py-16 animate-fade-in" id="venue">
+    <h2 class="text-3xl mb-6 text-center animate-zoom-in">
+      Venue
+    </h2>
+
+    <p class="text-center mb-4 animate-slide-up animate-delay-200">
+      LBS Institute Of Technology for Women, Poojappura, Thiruvananthapuram
+    </p>
+
+    <div class="mt-6 flex justify-center animate-fade-in-delay">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3930.1401458678796!2d76.97006537499977!3d8.490969699999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05ba511ecc0667%3A0xd23b5ccfdf2aab2b!2sLBS%20Institute%20Of%20Technology%20for%20Women!5e0!3m2!1sen!2sin!4v1720000000000!5m2!1sen!2sin" width="100%" height="300" style="border:0; max-width: 600px; border-radius: 8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+
+  <!-- FAQ Section -->
+  <section class="px-6 md:px-8 py-16 animate-fade-in" id="faq">
+    <h2 class="text-3xl mb-6 text-center animate-zoom-in">FAQs</h2>
+
+    <div class="max-w-3xl mx-auto space-y-4">
+
+      <details class="bg-purple-800 p-4 rounded animate-slide-up">
+        <summary class="cursor-pointer font-semibold">
+          Who all can Register?
+        </summary>
+        <p class="mt-2">
+          IEEE or Non-IEEE members in any under-graduation or graduation program from any institute can register for
+          Explorica 7.0.
+        </p>
+      </details>
+
+      <details class="bg-purple-800 p-4 rounded animate-slide-up" style="animation-delay: 0.2s;">
+        <summary class="cursor-pointer font-semibold">
+          How can I Register?
+        </summary>
+        <p class="mt-2">
+          You can register online through the link provided on the website or through our official social media handles.
+        </p>
+      </details>
+
+      <details class="bg-purple-800 p-4 rounded animate-slide-up" style="animation-delay: 0.4s;">
+        <summary class="cursor-pointer font-semibold">
+          Are certificates provided?
+        </summary>
+        <p class="mt-2">
+          Definitely! All participants will receive valid certificates for attending Explorica 7.0.
+        </p>
+      </details>
+
+      <details class="bg-purple-800 p-4 rounded animate-slide-up" style="animation-delay: 0.6s;">
+        <summary class="cursor-pointer font-semibold">
+          Will there be workshops or talk sessions?
+        </summary>
+        <p class="mt-2">
+          Yes! We have exciting pre-events, workshops, and speaker sessions led by experts.
+        </p>
+      </details>
+
+      <details class="bg-purple-800 p-4 rounded animate-slide-up" style="animation-delay: 0.8s;">
+        <summary class="cursor-pointer font-semibold">
+          Is this an offline event?
+        </summary>
+        <p class="mt-2">
+          Yes, all activities are scheduled to take place at LBS Institute of Technology for Women, Trivandrum.
+        </p>
+      </details>
+
+    </div>
+  </section>
+
+
+  <!-- Footer -->
+  <footer class="bg-black text-white py-8">
+    <div class="flex flex-col items-center space-y-4 px-6 md:px-8 text-center">
+
+      <!-- Logo -->
+      <div>
+        <img src="images/sb logo-white (2).png" alt="IEEE Logo" class="h-12 w-auto">
+      </div>
+
+      <!-- Contact Info Row -->
+      <div class="flex flex-col sm:flex-row sm:space-x-4 items-center">
+        <p>
+          Email us:
+          <a href="mailto:ieeesblbsitw25@gmail.com" class="text-purple-400">ieeesblbsitw25@gmail.com</a>
+        </p>
+        <span class="hidden sm:inline">|</span>
+        <p>
+          Website:
+          <a href="https://ieeesblbsitw.org/" class="text-purple-400">ieeesblbsitw.org</a>
+        </p>
+        <span class="hidden sm:inline">|</span>
+        <p>
+          Contact:
+          <a class="text-purple-400">8891230108</a>
+        </p>
+      </div>
+
+      <!-- Social Links Row -->
+      <div class="flex space-x-4">
+        <a href="https://www.instagram.com/ieee_sb_lbsitw/" target="_blank" class="hover:text-pink-400">Instagram</a>
+        <a href="https://www.linkedin.com/company/ieee-sb-lbsitw/" target="_blank" class="hover:text-blue-400">LinkedIn</a>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- cine cipher-->
+  <div id="pitchModal" class="modal hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+    <div class="modal-content rounded-lg p-6 max-w-xl max-h-[90vh] overflow-y-auto relative">
+      <button onclick="closeModal('pitchModal')" class="absolute top-2 right-3 text-2xl font-bold text-white">×</button>
+      <img src="/images/events/product_pitching.jpeg" alt="PaperCraft Pitching" class="w-full h-auto rounded mb-4">
+      <h2 class="text-2xl font-bold mb-3">Product Pitching Competition</h2>
+      <p class="text-sm whitespace-pre-line leading-relaxed">
+        🌪 Step into the spotlight at EXPLORICA 7.0 – Pre-Event powered by IEEE SB LBSITW for the ultimate test of
+        creativity, confidence, and quick thinking!
+
+        🎤 Product Pitching Competition – Pitch Like a Pro, No Prep Needed! 🔥
+
+        ✨ Think Fast. Speak Smart. Sell It Bold!
+
+        Do you have the wits to sell a product you’ve never seen before?
+        Can you charm a panel and win the crowd — with zero prep time?
+
+        🔍 What’s It About?
+
+        A product will be revealed to you on the spot, and you'll have just moments to craft and deliver your pitch!
+        Convince, compel, and stand out — all within minutes.
+        💡 Whether it’s a broomstick or a futuristic gadget — it’s all about how you sell it.
+
+        📍 Mode: Offline
+        🗓️ Date: 28-07-2025
+        ⏰. Time: 12:30-1:15 P.M
+
+        💸 Registration Fee:
+
+        ● ₹10 (IEEE Members)
+        ● ₹15 (Non-IEEE Members)
+
+
+      </p><div class="text-center mb-4">
+        <a href="https://bit.ly/product_pitching" target="_blank" class="inline-block bg-purple-700 text-white font-semibold px-6 py-2 rounded transition duration-300 opacity-50 cursor-not-allowed pointer-events-none">
+          Register Now
+        </a>
+      </div>
+      📞 Contact for More Details:
+      Manju R (S3 CS2)
+      📱 8848360489
+
+      🗣One mic. One moment. One mind-blowing pitch.
+      Be spontaneous. Be smart. Be legendary. 🔥
+
+      <p></p>
+    </div>
+  </div>
+
+
+  <!-- Paper craft Modal -->
+  <div id="craftModal" class="modal hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+    <div class="modal-content rounded-lg p-6 max-w-xl max-h-[90vh] overflow-y-auto relative">
+      <button onclick="closeModal('craftModal')" class="absolute top-2 right-3 text-2xl font-bold text-white">×</button>
+      <img src="/images/events/papercraft.jpeg" alt="PaperCraft" class="w-full h-auto rounded mb-4">
+      <h2 class="text-2xl font-bold mb-3">Papercraft-Showdown</h2>
+      <p class="text-sm whitespace-pre-line leading-relaxed">
+        PaperCraft Showdown
+        🔹 Think outside the sheet at 𝗘𝗫𝗣𝗟𝗢𝗥𝗜𝗖𝗔 𝟳.𝟬 - 𝗣𝗿𝗲-𝗲𝘃𝗲𝗻𝘁 𝗽𝗼𝘄𝗲𝗿𝗲𝗱 𝗯𝘆 𝗜𝗘𝗘𝗘 𝗦𝗕
+        𝗟𝗕𝗦𝗜𝗧𝗪!
+
+        🖌️ Sculpt, fold, and build with nothing but newspaper!
+        Unleash your creative genius and discover that true innovation often starts simply.
+
+        📅𝗗𝗮𝘁𝗲: 8th August 2025
+        🖥️ 𝗠𝗼𝗱𝗲: Offline
+        💸 𝗙𝗲𝗲:
+        ₹20 (IEEE Members)
+        ₹25 (Non-IEEE Members)
+
+      </p><div class="text-center mb-4">
+        <a href="https://bit.ly/Papercraft-Showdown" target="_blank" class="inline-block bg-purple-700 text-white font-semibold px-6 py-2 rounded transition duration-300 opacity-50 cursor-not-allowed pointer-events-none">
+          Register Now
+        </a>
+      </div>
+      ✂️ Only a few pages left to create your masterpiece - register before the paper runs out!
+      📞 For more details, contact:
+      Jissy : 7736622027
+      Binthia : 7736276288
+      Manju : 8848360489
+      <p></p>
+    </div>
+  </div>
+
+  <!-- Cine cipher-->
+  <div id="cineModal" class="modal hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+    <div class="modal-content rounded-lg p-6 max-w-xl max-h-[90vh] overflow-y-auto relative">
+      <button onclick="closeModal('cineModal')" class="absolute top-2 right-3 text-2xl font-bold text-white">×</button>
+      <img src="/images/events/cinecipher.jpeg" alt="PaperCraft Pitching" class="w-full h-auto rounded mb-4">
+      <h2 class="text-2xl font-bold mb-3">Cine Cipher</h2>
+      <p class="text-sm whitespace-pre-line leading-relaxed">
+        🎬 𝗖𝗜𝗡𝗘 𝗖𝗜𝗣𝗛𝗘𝗥🎥
+        Decode the Drama at 𝗘𝘅𝗽𝗹𝗼𝗿𝗶𝗰𝗮 𝟳.𝟬-𝗣𝗿𝗲-𝗘𝘃𝗲𝗻𝘁 𝗽𝗼𝘄𝗲𝗿𝗲𝗱 𝗯𝘆 𝗜𝗘𝗘𝗘 𝗦𝗕 𝗟𝗕𝗦𝗜𝗧𝗪!
+
+        Dive into a fun, fast-paced challenge where you’ll be shown a mix of emojis, cryptic clues, or visual hints-and
+        it’s up to you to decode the movie titles!
+
+        📍 𝗠𝗼𝗱𝗲: Online
+        🗓 𝗗𝗮𝘁𝗲: 13-08-2025
+        ⏰ 𝗧𝗶𝗺𝗲: 8:00 PM – 9:00 PM
+        💸 𝗥𝗲𝗴𝗶𝘀𝘁𝗿𝗮𝘁𝗶𝗼𝗻 𝗙𝗲𝗲:
+        ● ₹15 (IEEE Members)
+        ● ₹20 (Non-IEEE Members)
+
+        🛑 𝗢𝗽𝗲𝗻 𝘁𝗼 𝗮𝗹𝗹 𝘀𝘁𝘂𝗱𝗲𝗻𝘁𝘀-𝗯𝗼𝘁𝗵 𝗟𝗕𝗧𝗶𝗮𝗻𝘀 𝗮𝗻𝗱 𝗻𝗼𝗻-𝗟𝗕𝗧𝗶𝗮𝗻𝘀! 🛑
+      </p><div class="text-center mb-4">
+        <a href="https://bit.ly/Cine_Cipher" target="_blank" class="inline-block bg-purple-700 hover:bg-purple-900 text-white font-semibold px-6 py-2 rounded transition duration-300">
+          Register Now
+        </a>
+      </div>
+      📞For More Details,contact:
+      Manju R: 8848360489
+      Jissy : 7736622027
+      Binthia&nbsp;:&nbsp;7736276288
+
+      <p></p>
+    </div>
+  </div>
+
+
+  <!-- Frame Flix -->
+  <div id="frameModal" class="modal hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+    <div class="modal-content rounded-lg p-6 max-w-xl max-h-[90vh] overflow-y-auto relative">
+      <button onclick="closeModal('frameModal')" class="absolute top-2 right-3 text-2xl font-bold text-white">×</button>
+      <img src="/images/events/frameflix.jpeg" alt="Product Pitching" class="w-full h-auto rounded mb-4">
+      <h2 class="text-2xl font-bold mb-3">Frame Flix</h2>
+      <p class="text-sm whitespace-pre-line leading-relaxed">
+        🎬 𝗙𝗿𝗮𝗺𝗲𝗙𝗹𝗶𝘅- 𝗚𝘂𝗲𝘀𝘀 𝘁𝗵𝗲 𝘀𝗲𝗿𝗶𝗲𝘀, 𝗦𝘁𝗲𝗮𝗹 𝘁𝗵𝗲 𝗦𝗽𝗼𝘁𝗹𝗶𝗴𝗵𝘁!
+        🔹 Binge-watchers, assemble! It’s quiz time at 𝗘𝗫𝗣𝗟𝗢𝗥𝗜𝗖𝗔 𝟳.𝟬 - 𝗣𝗿𝗲-𝗲𝘃𝗲𝗻𝘁 𝗽𝗼𝘄𝗲𝗿𝗲𝗱 𝗯𝘆
+        𝗜𝗘𝗘𝗘 𝗦𝗕 𝗟𝗕𝗦𝗜𝗧𝗪!
+
+        🎥 From cliffhangers to iconic dialogues - test your binge brain!
+        If you’re the go-to for series spoilers, this quiz is your episode!
+
+        📅𝗗𝗮𝘁𝗲: 15th August 2025
+        🖥️ 𝗠𝗼𝗱𝗲: Online
+        💸 𝗙𝗲𝗲:
+        ₹15 (IEEE Members)
+        ₹20 (Non-IEEE Members)
+      </p><div class="text-center mb-4">
+        <a href="https://bit.ly/FrameFlix" target="_blank" class="inline-block bg-purple-700 hover:bg-purple-900 text-white font-semibold px-6 py-2 rounded transition duration-300">
+          Register Now
+        </a>
+      </div>
+
+      🎞️ Slots are filling fast - claim yours before the credits roll!
+      📞 For more details,contact:
+      Jissy: 77366 22027
+      Binthia: 7736376288
+      Manju: 88483 60489
+      <p></p>
+    </div>
+  </div>
+
+  <!-- Lyrical Clash -->
+  <div id="lyricModal" class="modal hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+    <div class="modal-content rounded-lg p-6 max-w-xl max-h-[90vh] overflow-y-auto relative">
+      <button onclick="closeModal('lyricModal')" class="absolute top-2 right-3 text-2xl font-bold text-white">×</button>
+      <img src="/images/events/Lyriclash.jpeg" alt="Product Pitching" class="w-full h-auto rounded mb-4">
+      <h2 class="text-2xl font-bold mb-3">Lyriclash</h2>
+      <p class="text-sm whitespace-pre-line leading-relaxed">
+        🎵 𝗟𝘆𝗿𝗶𝗰𝗟𝗮𝘀𝗵
+        🔹 Let the music show begin at 𝗘𝗫𝗣𝗟𝗢𝗥𝗜𝗖𝗔 𝟳.𝟬 - 𝗣𝗿𝗲-𝗲𝘃𝗲𝗻𝘁 𝗽𝗼𝘄𝗲𝗿𝗲𝗱 𝗯𝘆 𝗜𝗘𝗘𝗘 𝗦𝗕
+        𝗟𝗕𝗦𝗜𝗧𝗪!
+
+        Join us for an exciting 𝗟𝘆𝗿𝗶𝗰𝗟𝗮𝘀𝗵!
+        Test your knowledge of hits, classics, lyrics &amp; legends!
+
+        📅𝗗𝗮𝘁𝗲: 17th August 2025
+        🖥 𝗠𝗼𝗱𝗲: Online
+        💸 𝗙𝗲𝗲:
+        ₹10 (IEEE Members)
+        ₹15 (Non-IEEE Members)
+
+      </p><div class="text-center mb-4">
+        <a href="https://bit.ly/lyric_lash" target="_blank" class="inline-block bg-purple-700 hover:bg-purple-900 text-white font-semibold px-6 py-2 rounded transition duration-300">
+          Register Now
+        </a>
+      </div>
+
+
+      ❗ Think quick - just a few spots left on the grid!
+      📞 For more details,contact:
+      Jissy : 7736622027
+      Binthia : 7736276288
+      Manju&nbsp;:&nbsp;8848360489
+      <p></p>
+    </div>
+  </div>
+
+  <!--Subway surfers-->
+  <div id="surferModal" class="modal hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+    <div class="modal-content rounded-lg p-6 max-w-xl max-h-[90vh] overflow-y-auto relative">
+      <button onclick="closeModal('surferModal')" class="absolute top-2 right-3 text-2xl font-bold text-white">×</button>
+      <img src="/images/events/surfers.jpeg" alt="subway" class="w-full h-auto rounded mb-4">
+      <h2 class="text-2xl font-bold mb-3">Subway Surfers</h2>
+      <p class="text-sm whitespace-pre-line leading-relaxed">
+        🕹️ 𝗦𝘂𝗯𝘄𝗮𝘆 𝗦𝘂𝗿𝗳𝗲𝗿𝘀
+        🔹 Dash into action with 𝗘𝗫𝗣𝗟𝗢𝗥𝗜𝗖𝗔 𝟳.𝟬 - 𝗣𝗿𝗲-𝗲𝘃𝗲𝗻𝘁 𝗽𝗼𝘄𝗲𝗿𝗲𝗱 𝗯𝘆 𝗜𝗘𝗘𝗘 𝗦𝗕
+        𝗟𝗕𝗦𝗜𝗧𝗪!
+
+        🚀 Slide, swipe, and score like a pro!
+        Prove your reflexes in this ultimate offline showdown.
+
+        📅𝗗𝗮𝘁𝗲: 8th September 2025
+        🖥️ 𝗠𝗼𝗱𝗲: Offline
+        💸 𝗙𝗲𝗲:
+        ₹10 (IEEE Members)
+        ₹15 (Non-IEEE Members)
+
+      </p><div class="text-center mb-4">
+        <a href="https://bit.ly/subway-Surfers" target="_blank" class="inline-block bg-purple-700 hover:bg-purple-900 text-white font-semibold px-6 py-2 rounded transition duration-300">
+          Register Now
+        </a>
+      </div>
+
+      ⚡ Run fast - the leaderboard's filling up in a flash!
+      📞 For more details,contact:
+      Jissy: 77366 22027
+      Binthia: 7736276288
+      Manju: 88483 60489
+
+      <p></p>
+    </div>
+  </div>
+
+  <!--Ludo-->
+  <div id="ludoModal" class="modal hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+    <div class="modal-content rounded-lg p-6 max-w-xl max-h-[90vh] overflow-y-auto relative">
+      <button onclick="closeModal('ludoModal')" class="absolute top-2 right-3 text-2xl font-bold text-white">×</button>
+      <img src="/images/events/ludo.jpeg" alt="subway" class="w-full h-auto rounded mb-4">
+      <h2 class="text-2xl font-bold mb-3">LUDO</h2>
+      <p class="text-sm whitespace-pre-line leading-relaxed">
+        𝗟𝘂𝗱𝗼
+        🔹 Classic fun meets competition at 𝗘𝗫𝗣𝗟𝗢𝗥𝗜𝗖𝗔 𝟳.𝟬 - 𝗣𝗿𝗲-𝗲𝘃𝗲𝗻𝘁 𝗽𝗼𝘄𝗲𝗿𝗲𝗱 𝗯𝘆 𝗜𝗘𝗘𝗘
+        𝗦𝗕 𝗟𝗕𝗦𝗜𝗧𝗪!
+
+        🎯 A battle of dice, luck, and strategy!
+        Knock out the competition and make your way home in style.
+
+        📅𝗗𝗮𝘁𝗲: 10th September 2025
+        🏫 𝗠𝗼𝗱𝗲: Offline
+        💸 𝗙𝗲𝗲:
+        ₹10 (IEEE Members)
+        ₹15 (Non-IEEE Members)
+
+      </p><div class="text-center mb-4">
+        <a href="https://bit.ly/Ludo_Preevent" target="_blank" class="inline-block bg-purple-700 hover:bg-purple-900 text-white font-semibold px-6 py-2 rounded transition duration-300">
+          Register Now
+        </a>
+
+      </div>
+      🎲 Spots are rolling away fast - lock in your move now before someone else knocks you out!
+      📞 For more details, contact:
+      Jissy : 7736622027
+      Binthia : 7736276288
+      Manju&nbsp;:&nbsp;8848360489
+
+      <p></p>
+    </div>
+  </div>
+
+  <!--Dub and Drama Duel-->
+  <div id="dubModal" class="modal hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+    <div class="modal-content rounded-lg p-6 max-w-xl max-h-[90vh] overflow-y-auto relative">
+      <button onclick="closeModal('dubModal')" class="absolute top-2 right-3 text-2xl font-bold text-white">×</button>
+      <img src="/images/events/dubduel.jpeg" alt="subway" class="w-full h-auto rounded mb-4">
+      <h2 class="text-2xl font-bold mb-3">Dub and Drama Duel</h2>
+      <p class="text-sm whitespace-pre-line leading-relaxed">
+        💥 𝗗𝘂𝗯 𝗮𝗻𝗱 𝗗𝗿𝗮𝗺𝗮 𝗗𝘂𝗲𝗹 💥
+        🎬 Own the mic at 𝗘𝗫𝗣𝗟𝗢𝗥𝗜𝗖𝗔 𝟳.𝟬 - 𝗣𝗿𝗲-𝗲𝘃𝗲𝗻𝘁 𝗽𝗼𝘄𝗲𝗿𝗲𝗱 𝗯𝘆 𝗜𝗘𝗘𝗘 𝗦𝗕 𝗟𝗕𝗦𝗜𝗧𝗪!
+        Think you can lend your voice to iconic scenes on the spot?
+        Show off your creativity, humor, and quick thinking in this fun, spontaneous event!
+        📅𝗗𝗮𝘁𝗲: 12th September 2025
+        🖥️ 𝗠𝗼𝗱𝗲: Offline
+        💸 𝗙𝗲𝗲:
+        ₹15 (IEEE Members)
+        ₹20 (Non-IEEE Members)
+
+
+      </p><div class="text-center mb-4">
+        <a href="https://bit.ly/DubAndDramaDuel" target="_blank" class="inline-block bg-purple-700 hover:bg-purple-900 text-white font-semibold px-6 py-2 rounded transition duration-300">
+          Register Now
+        </a>
+      </div>
+      👄 Speak it, tweak it — slots are fading faster than your voice can catch up!
+      📞 For more details,contact:
+      Jissy: 77366 22027
+      Binthia: 7736276288
+      Manju: 88483 60489
+      <p></p>
+    </div>
+  </div>
+
+  <!--Inplain Text-->
+  <div id="plainModal" class="modal hidden fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center">
+    <div class="modal-content rounded-lg p-6 max-w-xl max-h-[90vh] overflow-y-auto relative">
+      <button onclick="closeModal('plainModal')" class="absolute top-2 right-3 text-2xl font-bold text-white">×</button>
+      <img src="/images/events/inplain.jpeg" alt="inplain" class="w-full h-auto rounded mb-4">
+      <h2 class="text-2xl font-bold mb-3">In Plain Text</h2>
+      <p class="text-sm whitespace-pre-line leading-relaxed">
+        🎥 𝗜𝗻 𝗣𝗹𝗮𝗶𝗻 𝗧𝗲𝗰𝗵
+        🔹 Let your lens lead the way at 𝗘𝗫𝗣𝗟𝗢𝗥𝗜𝗖𝗔 𝟳.𝟬 - 𝗣𝗿𝗲-𝗲𝘃𝗲𝗻𝘁 𝗽𝗼𝘄𝗲𝗿𝗲𝗱 𝗯𝘆 𝗜𝗘𝗘𝗘 𝗦𝗕
+        𝗟𝗕𝗦𝗜𝗧𝗪!
+
+        🎬 Turn a tech concept into a compelling story.
+        Innovate through visuals and leave a mark with your videography!
+
+        📽️ 𝗠𝗼𝗱𝗲: Videography Submission
+        ⏱️ 𝗧𝗶𝗺𝗲 𝗟𝗶𝗺𝗶𝘁: 1-2 mins
+        💸 𝗙𝗲𝗲:
+        ₹20 (IEEE Members)
+        ₹25 (Non-IEEE Members)
+        🛑𝗗𝗲𝗮𝗱𝗹𝗶𝗻𝗲: 12th September 2025
+
+      </p><div class="text-center mb-4">
+        <a href="https://bit.ly/InPlainTech" target="_blank" class="inline-block bg-purple-700 hover:bg-purple-900 text-white font-semibold px-6 py-2 rounded transition duration-300">
+          Register Now
+        </a>
+      </div>
+
+      🎥 Lights, camera… almost no time left! Secure your frame before the final cut!
+      📞 For more details,contact:
+      Jissy: 77366 22027
+      Binthia: 7736276288
+      Manju: 88483 60489
+
+      <p></p>
+    </div>
+  </div>
+
+
+
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+
+    const preEventCarousel = document.getElementById("pre-events-carousel");
+    const nextPreEventBtn = document.getElementById("nextPreEventBtn");
+    const prevPreEventBtn = document.getElementById("prevPreEventBtn");
+
+    nextPreEventBtn.addEventListener("click", () => {
+      preEventCarousel.scrollBy({ left: 300, behavior: "smooth" });
+    });
+
+    prevPreEventBtn.addEventListener("click", () => {
+      preEventCarousel.scrollBy({ left: -300, behavior: "smooth" });
+    });
+
+    const mainEventCarousel = document.getElementById("main-events-carousel");
+    const nextMainEventBtn = document.getElementById("nextMainEventBtn");
+    const prevMainEventBtn = document.getElementById("prevMainEventBtn");
+
+    nextMainEventBtn.addEventListener("click", () => {
+      mainEventCarousel.scrollBy({ left: 300, behavior: "smooth" });
+    });
+
+    prevMainEventBtn.addEventListener("click", () => {
+      mainEventCarousel.scrollBy({ left: -300, behavior: "smooth" });
+    });
+
+    const universe = document.getElementById("universe");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.classList.add("star");
+
+      // Larger size between 3px and 6px
+      const size = 3 + Math.random() * 3;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+
+      star.style.left = `${Math.random() * 100}vw`;
+      star.style.top = `${Math.random() * 100 - 100}vh`;
+
+      // Faster animation between 10s and 20s
+      star.style.animationDuration = `${10 + Math.random() * 10}s`;
+
+      universe.appendChild(star);
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+    }
+
+    function showAlert() {
+      const alertBox = document.getElementById('ticket-alert');
+      alertBox.style.display = 'block';
+      setTimeout(() => {
+        alertBox.style.display = 'none';
+      }, 3000); // Hides after 3 seconds
+    }
+
+    const glimpsesCarousel = document.getElementById("glimpses-carousel");
+    const prevBtn = document.getElementById("prevGlimpseBtn");
+    const nextBtn = document.getElementById("nextGlimpseBtn");
+
+    nextBtn.addEventListener("click", () => {
+      glimpsesCarousel.scrollBy({ left: 320, behavior: "smooth" });
+    });
+
+    prevBtn.addEventListener("click", () => {
+      glimpsesCarousel.scrollBy({ left: -320, behavior: "smooth" });
+    });
+  </script>
+
+
+<div id="extension-dpfof"></div></body></html>
