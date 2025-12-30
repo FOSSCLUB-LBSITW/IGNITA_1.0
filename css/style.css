@@ -121,7 +121,7 @@ a{
   display: flex;
   align-items: center;
   justify-content: space-between; /* 🔥 magic */
-
+  font-size: large;
   padding: 0 10px;
   z-index: 1000;
 }
@@ -203,14 +203,14 @@ li :hover {
 }
 .tag{
     font-size: 20px;
-    font-style: italic;
-    font-family: cursive;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     margin-top: 20px;
     color: white;
     text-shadow: 0 0 10px rgb(0, 0, 0);
     justify-content: center;
     display: flex;
     align-items: center;
+    margin:20px;
 }
 /* section background gradient */
 .sec {
@@ -451,4 +451,79 @@ html, body {
 #faq,
 #pre-events {
   scroll-margin-top: 90px; /* navbar height + breathing space */
+}
+
+
+/* Modal background */
+.reg-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal box */
+.reg-modal-content {
+  background: radial-gradient(circle at top left,
+    black 20%,
+    #0E3B2E 40%,
+    #088858 60%,
+    black 100%
+  );
+  color: white;
+
+  width: 90%;
+  max-width: 420px;   /* 👈 perfect for mobile + desktop */
+  padding: 25px;
+
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 0 10px #4DEEA5;
+  position: relative;
+}
+
+/* Close button (top-left as you asked) */
+.reg-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 26px;
+  cursor: pointer;
+  color: white;
+}
+
+.reg-close:hover {
+  color: #4DEEA5;
+}
+
+/* Text tweaks */
+.reg-modal-content h2 {
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+.reg-modal-content p {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+#tagline{
+  font-size: 35px;
+  margin: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  color: #4DEEA5;
+  text-shadow: 0 0 25px #000000;
+ 
+}
+
+.m20{
+  margin-top: 50px;
+}
+
+#m20{
+  margin-top: 30px;
 }
