@@ -524,6 +524,17 @@ html, body {
   margin-top: 50px;
 }
 
-#m20{
-  margin-top: 30px;
+
+
+#home{
+  height: 100vh;
+}
+
+#events{
+  height: 0%;
+}
+
+@media (max-width: 768px) {
+#tagline{
+  font-size: 25px;}
 }
