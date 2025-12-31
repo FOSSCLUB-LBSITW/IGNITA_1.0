@@ -94,26 +94,55 @@ a{
     color: white;
     margin-top: 100px;
 }
-#nb {
+
+/* #nb {
     position: fixed;
     top: 0;
-    left: -20px;                 /* no need for -20px */
+    left: -20px;                 
     width: 100%;
     height: 10%;
     background-color: black;
     display: flex;
-    font-size: x-large;
+    font-size: 20px;
     justify-content: flex-end;
     align-items: center;
     z-index: 1000;
+} */
+
+#nb {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+
+  background-color: black;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* 🔥 magic */
+  font-size: large;
+  padding: 0 10px;
+  z-index: 1000;
 }
 
+/* 
 #nb .menu {
     display: flex;
     gap: 10px;
     list-style: none;
     color: white;
+} */
+
+
+#nb .menu {
+  display: flex;
+  gap: 0px;
+  list-style: none;
+  align-items: center;
+  margin: 0;
 }
+
 
 #nb .menu li {
     padding: 8px;
@@ -161,10 +190,11 @@ li :hover {
 }
 .foss-heading {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    font-size: 100px;
-    font-weight: bolder;
+    font-size: 80px;
+    font-weight: bold;
     letter-spacing: 3px;
-    text-shadow: 0 0 15px #20ef92;
+    text-shadow: 0 0 10px #000000;
+    margin-top: -100px;
 }
 .foss-subheading {
     color: white;
@@ -173,13 +203,15 @@ li :hover {
     text-shadow: 0 0 10px white;
 }
 .tag{
-    font-size: 24px;
+    font-size: 20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
     margin-top: 20px;
     color: white;
     text-shadow: 0 0 10px rgb(0, 0, 0);
     justify-content: center;
     display: flex;
     align-items: center;
+    margin:20px;
 }
 /* section background gradient */
 .sec {
@@ -313,17 +345,39 @@ footer{
     
   }
 
-  .logo
+  /* .logo
   { display: flex;
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
     border-radius: 50%;
     overflow: hidden;
     position: relative;
-    box-shadow: 0 0 15px #20ef92;
+    box-shadow: 0 0 5px #20ef92;
     margin:auto;
     margin-bottom: 30px;
+    align-self: left;
+    align-items: left;
   }
+#ign{
+  position: absolute;
+  margin-left: 5px;
+  margin-top: 5px;
+} */
+
+#ign {
+  display: flex;
+  align-items: center;
+  margin-bottom: -15px;
+}
+
+.logo {
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+
 
   .ticket{
     height: 100px;
@@ -345,7 +399,195 @@ footer{
 
 #pre{
   text-align: center;
-  font-size: 40px;
+  font-size: 30px;
   text-shadow: 0 0 15px #20ef92;
   font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+}
+
+footer{
+  width: 100%;
+  margin:0;
+}
+
+#faq {
+  color: #ffffff;
+}
+
+#faq details {
+  background: black;
+  border: 1px solid rgba(77, 238, 165, 0.4);
+  border-radius: 14px;
+  padding: 1rem;
+  transition: all 0.3s ease;
+  
+  margin: 10px;
+}
+
+#faq details:hover {
+  transform: translateY(-4px);
+}
+
+#faq summary {
+  color: #4DEEA5;
+  font-size: 1.05rem;
+}
+
+#faq p {
+  color: #ffffff;
+  line-height: 1.6;
+}
+
+#faq h2 {
+  color: #4DEEA5;
+  text-shadow: 0 0 12px rgba(77, 238, 165, 0.5);
+}
+
+html, body {
+  min-height: 100%;
+  overflow-x: hidden;
+}
+
+#home,
+#events,
+#faq,
+#pre-events {
+  scroll-margin-top: 90px; /* navbar height + breathing space */
+}
+
+
+/* Modal background */
+.reg-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Modal box */
+.reg-modal-content {
+  background: radial-gradient(circle at top left,
+    black 20%,
+    #0E3B2E 40%,
+    #088858 60%,
+    black 100%
+  );
+  color: white;
+
+  width: 90%;
+  max-width: 420px;   /* 👈 perfect for mobile + desktop */
+  padding: 25px;
+
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 0 10px #4DEEA5;
+  position: relative;
+}
+
+/* Close button (top-left as you asked) */
+.reg-close {
+  position: absolute;
+  top: 12px;
+  right: 15px;
+  font-size: 26px;
+  cursor: pointer;
+  color: white;
+}
+
+.reg-close:hover {
+  color: #4DEEA5;
+}
+
+/* Text tweaks */
+.reg-modal-content h2 {
+  margin-top: 10px;
+  color: #ffffff;
+}
+
+.reg-modal-content p {
+  margin-top: 10px;
+  line-height: 1.6;
+}
+
+#tagline{
+  font-size: 35px;
+  margin: 10px;
+  font-family: 'Courier New', Courier, monospace;
+  font-weight: bolder;
+  color: #4DEEA5;
+  text-shadow: 0 0 25px #000000;
+ 
+}
+
+.m20{
+  margin: 50px;
+}
+
+
+
+#home{
+  height: 100vh;
+}
+
+#events{
+  height: 0%;
+}
+
+
+
+#com{
+  margin: 80px;
+  font-size: 30px;
+}
+
+#hrc{
+  margin: 100px 0px;
+}
+.logo2
+{ display: flex;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  margin:auto;
+  margin-bottom: 30px;
+  align-self: center;
+  align-items: center;
+}
+
+
+.insta-icon {
+  font-size: 26px;
+  color: #4DEEA5;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.insta-icon:hover {
+  color: #ffffff;
+  transform: scale(1.2);
+}
+
+#foot p {
+  margin: 5px;
+  font-size: 20px;
+}
+
+@media (max-width: 768px) {
+#tagline{
+  font-size: 28px;
+  letter-spacing: -0.5px; /* Or use 'em' units, e.g., -0.05em */
+;}
+  #m20{
+    font-size: 65px;
+  }
+  #foot p {
+  margin: 5px;
+  font-size: 15px;
+}
+}
+#ema{
+ margin-top: 100px; 
 }
