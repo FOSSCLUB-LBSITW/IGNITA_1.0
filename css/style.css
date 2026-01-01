@@ -39,7 +39,7 @@ body {
   max-width: 500px;
   color: white;
   text-align: center;
-  box-shadow: 0 0 25px #4DEEA5;
+  box-shadow: 0 0 15px #4DEEA5;
   position: relative;          /* needed for close button positioning */
 }
 
@@ -193,7 +193,7 @@ li :hover {
     font-size: 80px;
     font-weight: bold;
     letter-spacing: 3px;
-    text-shadow: 0 0 10px #000000;
+    text-shadow: 0 0 6px #4DEEA5;
     margin-top: -100px;
 }
 .foss-subheading {
@@ -590,4 +590,8 @@ html, body {
 }
 #ema{
  margin-top: 100px; 
+}
+
+#popp{
+  text-shadow: #000000 0 0 5px;
 }
