@@ -300,7 +300,6 @@ li :hover {
 button{
     padding: 10px 15px;
     border-radius: 5px;
-    background-color: #ffffff;
     border: none;
     cursor: pointer;
     color: black;
@@ -594,4 +593,15 @@ html, body {
 
 #popp{
   text-shadow: #000000 0 0 5px;
+}
+
+#btnreg{
+  background-color: #4DEEA5;
+  color: black;
+  text-shadow: white 0 0 15px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: larger;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
