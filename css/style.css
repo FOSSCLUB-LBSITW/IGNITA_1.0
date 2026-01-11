@@ -220,8 +220,8 @@ li :hover {
 }
 /* Event Card */
 .event-card {
-  height: 400px;
-  width: 350px;
+  height:  465px;
+  width: 360px;
   margin: auto;
   background-color: #0E3B2E;
   border-radius: 16px;
@@ -232,8 +232,8 @@ li :hover {
 }
 
 .event-card:hover {
-  height: 400px;
-  width: 300px;
+  height: 465px;
+  width: 360px;
   transform: translateY(-10px);
   box-shadow: 0 10px 30px rgba(0,0,0,0.8);
 }
