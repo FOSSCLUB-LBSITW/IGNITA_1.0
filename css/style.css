@@ -220,22 +220,25 @@ li :hover {
 }
 /* Event Card */
 .event-card {
-  height: 300px;
-  width: 300px;
   margin: auto;
-  background-color: #0E3B2E;
+  background-color: #000000;
   border-radius: 16px;
   overflow: hidden;
   position: relative;
   box-shadow: 0 0 20px rgba(0,0,0,0.7);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  width: 100%;
+  max-width: 360px;
+  aspect-ratio: 4 / 5;
+  background-color: #000000;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
-.event-card:hover {
-  height: 325px;
-  width: 325px;
-  transform: translateY(-10px);
-  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+
+.event-card:hover {  transform: translateY(-10px);
+  box-shadow: 0 10px 30px rgb(0, 0, 0);
 }
 
 /* Poster always shows initially */
@@ -262,7 +265,7 @@ li :hover {
   height: 100%;
   padding: 20px;
   text-align: center;
-  background-color: rgba(14, 59, 46, 0.95);
+  background-color: rgba(0, 0, 0, 0.95);
   display: flex;
   flex-direction: column;
   justify-content: center;
